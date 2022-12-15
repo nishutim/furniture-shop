@@ -1,0 +1,1973 @@
+// Fonts
+@font-face {
+   font-family: 'Gilroy';
+   src: url('../assets/fonts/Gilroy-Regular.eot');
+   src: local('Gilroy Regular'), local('Gilroy-Regular'),
+      url('../assets/fonts/Gilroy-Regular.eot?#iefix') format('embedded-opentype'),
+      url('../assets/fonts/Gilroy-Regular.woff2') format('woff2'),
+      url('../assets/fonts/Gilroy-Regular.woff') format('woff'),
+      url('../assets/fonts/Gilroy-Regular.ttf') format('truetype');
+   font-weight: normal;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: 'Gilroy';
+   src: url('../assets/fonts/Gilroy-Medium.eot');
+   src: local('Gilroy Medium'), local('Gilroy-Medium'),
+      url('../assets/fonts/Gilroy-Medium.eot?#iefix') format('embedded-opentype'),
+      url('../assets/fonts/Gilroy-Medium.woff2') format('woff2'),
+      url('../assets/fonts/Gilroy-Medium.woff') format('woff'),
+      url('../assets/fonts/Gilroy-Medium.ttf') format('truetype');
+   font-weight: 500;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: 'Gilroy';
+   src: url('../assets/fonts/Gilroy-Semibold.eot');
+   src: local('Gilroy Semibold'), local('Gilroy-Semibold'),
+      url('../assets/fonts/Gilroy-Semibold.eot?#iefix') format('embedded-opentype'),
+      url('../assets/fonts/Gilroy-Semibold.woff2') format('woff2'),
+      url('../assets/fonts/Gilroy-Semibold.woff') format('woff'),
+      url('../assets/fonts/Gilroy-Semibold.ttf') format('truetype');
+   font-weight: 600;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: 'Gilroy';
+   src: url('../assets/fonts/Gilroy-Bold.eot');
+   src: local('Gilroy Bold'), local('Gilroy-Bold'),
+      url('../assets/fonts/Gilroy-Bold.eot?#iefix') format('embedded-opentype'),
+      url('../assets/fonts/Gilroy-Bold.woff2') format('woff2'),
+      url('../assets/fonts/Gilroy-Bold.woff') format('woff'),
+      url('../assets/fonts/Gilroy-Bold.ttf') format('truetype');
+   font-weight: bold;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: 'icomoon';
+   src: url('../assets/fonts/icomoon.eot?88o3j');
+   src: url('../assets/fonts/icomoon.eot?88o3j#iefix') format('embedded-opentype'),
+      url('../assets/fonts/icomoon.ttf?88o3j') format('truetype'),
+      url('../assets/fonts/icomoon.woff?88o3j') format('woff'),
+      url('../assets/fonts/icomoon.svg?88o3j#icomoon') format('svg');
+   font-weight: normal;
+   font-style: normal;
+   font-display: block;
+}
+
+[class^="icon-"]::before,
+[class*=" icon-"]::before {
+   /* use !important to prevent issues with browser extensions that change fonts */
+   font-family: 'icomoon' !important;
+   speak: never;
+   font-style: normal;
+   font-weight: normal;
+   font-variant: normal;
+   text-transform: none;
+   line-height: 1;
+
+   /* Better Font Rendering =========== */
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-heart:before {
+   content: "\e903";
+}
+
+.icon-arrow:before {
+   content: "\e900";
+}
+
+.icon-cart:before {
+   content: "\e901";
+}
+
+.icon-down-arrow:before {
+   content: "\e902";
+}
+
+.icon-mail:before {
+   content: "\e904";
+}
+
+.icon-phone:before {
+   content: "\e905";
+}
+
+.icon-search:before {
+   content: "\e906";
+}
+
+.icon-share:before {
+   content: "\e907";
+}
+
+.icon-location2:before {
+   content: "\e948";
+}
+
+// Variables =========================================================================================================================
+$maxWidth: 1920;
+$maxWidthContainer: 1270;
+$md1: 1199.98px;
+$md2: 991.98px;
+$md3: 767.98px;
+$md4: 575.98px;
+
+// colors
+$white: #FFF;
+$black: #3A3A3A;
+$extraDarkGray: #616161;
+$darkGray: #898989;
+$gray: #B0B0B0;
+$lightGray: #D8D8D8;
+$lightBg: #F4F5F7;
+$orange: #E89F71;
+$orangeHover: #d69369;
+$red: #E97171;
+$green: #2EC1AC;
+$navy: #262F56;
+$lightCrema: #FCF8F3;
+$darkCrema: #F9F1E7;
+
+// font
+$fontFamily: 'Gilroy';
+$fontSize: 16px;
+$fontWeight: 500;
+$lineHeight: 1.5;
+$fontColor: $black;
+
+// Mixins ========================================================================================================================================
+@mixin flexCenter {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+@mixin flexColumn {
+   display: flex;
+   flex-direction: column;
+}
+
+@mixin adaptiv-value($property, $startSize, $endSize, $type) {
+   $addSize: $startSize - $endSize;
+
+   @if $type==1 {
+      #{$property}: $startSize + px;
+
+      @media (max-width: #{$maxWidthContainer + px}) {
+         #{$property}: calc(#{$endSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainer - 320}));
+      }
+   }
+
+   @else if type==2 {
+      #{$property}: $startSize + px;
+
+      @media (min-width: #{$maxWidthContainer + px}) {
+         #{$property}: calc(#{$endSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+      }
+   }
+
+   @else {
+      #{$property}: calc(#{$endSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}))
+   }
+}
+
+html,
+body {
+   width: 100%;
+   height: 100%;
+}
+
+body {
+   font-family: $fontFamily;
+   font-size: $fontSize;
+   font-weight: $fontWeight;
+   line-height: $lineHeight;
+   color: $fontColor;
+   background-color: $white;
+}
+
+a {
+   font-size: inherit;
+   font-weight: 500;
+}
+
+._ibg {
+   position: relative;
+
+   img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+   }
+}
+
+._flyImage._ibg {
+   opacity: 1;
+   position: fixed;
+   z-index: 100;
+   transition: all 1s ease;
+}
+
+.btn {
+   min-width: 245px;
+   min-height: 48px;
+   @include flexCenter();
+   font-weight: 600;
+   transition: all 0.3s ease;
+
+   &:disabled {
+      background-color: #B0B0B0;
+      color: $white;
+      opacity: 0.9;
+
+      @media screen and (any-hover: hover) {
+         &:hover {
+            background-color: #B0B0B0;
+            color: $white;
+         }
+      }
+   }
+
+   &_primary {
+      background-color: $orange;
+      color: $white;
+
+      @media screen and (any-hover: hover) {
+         &:hover {
+            background-color: $orangeHover;
+         }
+      }
+   }
+
+   &_white {
+      background-color: $white;
+      color: $orange;
+
+      @media screen and (any-hover: hover) {
+         &:hover {
+            background-color: $orangeHover;
+            color: $white;
+         }
+      }
+   }
+
+   &_ghost {
+      border: 1px solid $orange;
+      background-color: $white;
+      color: $orange;
+
+      &:disabled {
+         border-color: #B0B0B0;
+
+         @media screen and (any-hover: hover) {
+            &:hover {
+               background-color: #B0B0B0;
+               color: $white;
+            }
+         }
+      }
+
+      @media screen and (any-hover: hover) {
+         &:hover {
+            background-color: $orange;
+            color: $white;
+         }
+      }
+   }
+}
+
+.section-header {
+   font-weight: 700;
+   @include adaptiv-value("font-size", 40, 24, 1);
+   line-height: 120%;
+   text-align: center;
+}
+
+.wrapper {
+   min-height: 100%;
+   @include flexColumn();
+   overflow: hidden;
+}
+
+.container {
+   max-width: $maxWidthContainer + px;
+   margin: 0 auto;
+   padding: 0 15px;
+}
+
+.header {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   min-height: 40px;
+
+   @media screen and (max-width: $md4) {
+      min-height: 5px;
+   }
+
+   &._scroll {
+      .header__wrapper {
+         background-color: rgba(249, 241, 231, 1);
+      }
+
+      .header__body {
+         min-height: 60px;
+
+         @media screen and (min-width: $md2) {
+            min-height: 80px;
+         }
+      }
+   }
+
+   &__wrapper {
+      position: fixed;
+      z-index: 50;
+      top: 0;
+      left: 0;
+      width: 100%;
+      transition: background-color 0.3s ease;
+   }
+
+   &__body {
+      position: relative;
+      min-height: 125px;
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+      transition: min-height 0.3s ease;
+
+      @media screen and (max-width: $md1) {
+         min-height: 100px;
+      }
+
+      @media screen and (max-width: $md2) {
+         min-height: 80px;
+      }
+
+      @media screen and (max-width: $md3) {
+         min-height: 60px;
+      }
+   }
+
+   &__main {
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+
+      @media screen and (min-width: $md2) {
+         flex: 0 0 494/1240 * 100%;
+      }
+   }
+
+   &__logo {
+      position: relative;
+      z-index: 5;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 29 / 24 * 100%;
+      color: inherit;
+   }
+
+   &__menu {
+      flex: 1 1 auto;
+   }
+
+   &__search {
+      @media screen and (min-width: $md2) {
+         flex: 1 1 auto;
+      }
+
+      @include adaptiv-value("margin-right", 32, 16, 1);
+   }
+
+   &__actions {
+      position: relative;
+      z-index: 5;
+   }
+
+   &__burger {
+      @include adaptiv-value("margin-left", 32, 16, 1);
+   }
+}
+
+.menu {
+   @media screen and (max-width: $md3) {
+      display: none;
+   }
+
+   &__body {}
+
+   &__list {
+      display: flex;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+   }
+
+   &__list-item {
+      position: relative;
+      margin: 0 3px;
+
+      @media screen and (any-hover: hover) {
+         &:hover {
+            .menu__btn {
+               color: $orange;
+
+               &::before {
+                  transform: rotate(-90deg);
+                  color: $orange;
+               }
+            }
+
+            .menu__sub-list {
+               opacity: 1;
+               visibility: visible;
+               pointer-events: auto;
+               transform: translateY(0px);
+            }
+         }
+      }
+
+      &.active {
+         .menu__btn {
+            color: $orange;
+
+            &::before {
+               transform: rotate(-90deg);
+               color: $orange;
+            }
+         }
+
+         .menu__sub-list {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(5px);
+         }
+      }
+   }
+
+   &__btn {
+      padding: 5px 0;
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      gap: 12px;
+      font-size: inherit;
+      font-weight: 500;
+      line-height: 1.5;
+      color: inherit;
+      transition: all 0.3s ease;
+
+      &::before {
+         transition: all 0.3s ease;
+      }
+   }
+
+   &__sub-list {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 180px;
+      padding: 15px;
+      background-color: $orange;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(15px);
+      transition: all 0.3s ease;
+   }
+
+   &__sub-list-item {
+      &:not(:last-child) {
+         margin-bottom: 5px;
+      }
+   }
+
+   &__sub-link {
+      display: block;
+      font-weight: 400;
+      color: $white;
+
+      &:visited {
+         color: $white;
+      }
+
+      &:hover {
+         text-decoration: underline;
+      }
+   }
+}
+
+.menu-mobile {
+   @media screen and (min-width: $md3) {
+      display: none;
+   }
+
+   &__body {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      padding: 70px 15px 30px;
+      background-color: $darkCrema;
+      overflow-y: auto;
+      transition: all 0.3s ease;
+
+      &::before {
+         content: "";
+         position: fixed;
+         top: 0;
+         left: -100%;
+         width: 100%;
+         height: 60px;
+         background-color: $darkCrema;
+         transition: all 0.3s ease;
+      }
+   }
+
+   &.active {
+      .menu-mobile__body {
+         left: 0;
+
+         &::before {
+            left: 0;
+         }
+      }
+   }
+
+   &__list {
+      @include flexColumn();
+   }
+
+   &__list-item {
+
+      &.active {
+         .menu-mobile__btn {
+            color: $orange;
+
+            &::before {
+               transform: rotate(-90deg);
+               color: $orange;
+            }
+         }
+
+         .menu-mobile__sub-list {
+            overflow: visible;
+         }
+      }
+   }
+
+   &__btn {
+      padding: 5px 0;
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      gap: 12px;
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 1.5;
+      color: inherit;
+      transition: all 0.3s ease;
+
+      &::before {
+         transition: all 0.3s ease;
+      }
+   }
+
+   &__link {
+      display: block;
+      padding: 5px 0;
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 1.5;
+      color: inherit;
+      transition: all 0.3s ease;
+   }
+
+   &__sub-list {
+      overflow: hidden;
+      max-height: 0;
+      margin: 0 -15px;
+      padding: 0 15px;
+      background-color: $orange;
+      transition: max-height 0.3s ease;
+   }
+
+   &__sub-list-item {
+      &:first-child {
+         padding-top: 15px;
+      }
+
+      &:last-child {
+         padding-bottom: 15px;
+      }
+
+      &:not(:last-child) {
+         margin-bottom: 15px;
+      }
+   }
+
+   &__sub-link {
+      display: block;
+      font-size: 20px;
+      font-weight: 400;
+      color: $white;
+
+      &:visited {
+         color: $white;
+      }
+
+      &:hover {
+         text-decoration: underline;
+      }
+   }
+}
+
+.search {
+   &.active {
+      .search__btn_mobile {
+         color: $orange;
+      }
+
+      .search__body {
+         top: 100%;
+         opacity: 1;
+         visibility: visible;
+      }
+   }
+
+   &__btn_mobile {
+      position: relative;
+      z-index: 5;
+      @include flexCenter();
+      font-size: 24px;
+      color: $navy;
+      transition: all 0.3s ease;
+
+      @media screen and (any-hover: hover) {
+         &:hover {
+            color: $orange;
+         }
+      }
+
+      @media screen and (min-width: $md2) {
+         display: none;
+      }
+   }
+
+   &__body {
+      max-width: 473px;
+      display: flex;
+      transition: all 0.3s ease;
+
+      @media screen and (max-width: $md2) {
+         position: absolute;
+         top: -100%;
+         left: 0;
+         width: 100%;
+         max-width: none;
+         box-shadow: 0 0 5px rgba(212, 209, 205, 0.3);
+         opacity: 0;
+         visibility: hidden;
+      }
+   }
+
+   &__btn {
+      flex: 0 0 45px;
+      min-height: 45px;
+      @include flexCenter();
+      background-color: $white;
+      font-size: 16px;
+      color: $navy;
+      transition: all 0.3s ease;
+
+      @media screen and (any-hover: hover) {
+         &:hover {
+            color: $orange;
+         }
+      }
+   }
+
+   &__input {
+      flex: 1 1 auto;
+      width: 100%;
+   }
+}
+
+.actions {
+   display: flex;
+   align-items: center;
+   @include adaptiv-value("gap", 32, 16, 1);
+   ;
+
+   &__favourite {}
+
+   &__cart {}
+
+   &__profile {}
+}
+
+.favourite {
+
+   &__btn {
+      padding: 5px 0;
+      @include flexCenter();
+      font-size: 23px;
+      color: $navy;
+      transition: all 0.3s ease;
+
+      @media screen and (any-hover: hover) {
+         &:hover {
+            color: $orange;
+         }
+      }
+   }
+}
+
+.cart {
+
+   &.active {
+      .cart__btn {
+         color: $orange;
+      }
+
+      .cart__body {
+         opacity: 1;
+         visibility: visible;
+         transform: translate(0, 0);
+      }
+   }
+
+   &__btn {
+      position: relative;
+      padding: 5px 0;
+      @include flexCenter();
+      font-size: 26px;
+      color: $navy;
+      transition: all 0.3s ease;
+
+      @media screen and (any-hover: hover) {
+         &:hover {
+            color: $orange;
+         }
+      }
+
+      span {
+         position: absolute;
+         top: -2px;
+         right: -8px;
+         width: 18px;
+         height: 18px;
+         @include flexCenter();
+         border-radius: 50%;
+         background-color: $orange;
+         font-size: 12px;
+         color: $white;
+      }
+   }
+
+   &__body {
+      background-color: $lightBg;
+      border: 1px solid #e0e0e0;
+      position: absolute;
+      top: 58px;
+      right: 0;
+      padding: 15px;
+      width: 300px;
+      z-index: 5;
+      opacity: 0;
+      visibility: hidden;
+      transform: translate(0px, 20px);
+      transition: all 0.3s ease;
+
+      @media screen and (max-width: $md2) {
+         top: 48px;
+      }
+
+      @media screen and (max-width: $md3) {
+         position: fixed;
+         top: 60px;
+         left: 0;
+         width: 100%;
+      }
+   }
+
+   &__list {}
+}
+
+.cart-list {
+   overflow: auto;
+   max-height: 200px;
+
+   &__item {
+      display: flex;
+      align-items: flex-start;
+
+      &:not(:last-child) {
+         margin-bottom: 15px;
+      }
+   }
+
+   &__image {
+      flex: 0 0 100px;
+      height: 100px;
+   }
+
+   &__body {
+      flex: 1 1 auto;
+      @include flexColumn();
+      align-items: flex-start;
+      padding-left: 10px;
+   }
+
+   &__title {
+      color: inherit;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      margin-bottom: 5px / 16px * 1em;
+
+      @media screen and (any-hover: hover) {
+         &:hover {
+            color: $orange;
+         }
+      }
+   }
+
+   &__qty {
+      font-size: 14px;
+      margin-bottom: 5px / 14px * 1em;
+   }
+
+   &__delete-btn {
+      color: $red;
+      font-size: 14px;
+
+      @media screen and (any-hover: hover) {
+         &:hover {
+            text-decoration: underline;
+         }
+      }
+   }
+}
+
+.profile {
+
+   &__link {
+      display: block;
+      @include adaptiv-value("width", 40, 30, 1);
+      @include adaptiv-value("height", 40, 30, 1);
+   }
+}
+
+.burger-menu {
+   position: relative;
+   width: 24px;
+   height: 24px;
+   @include flexColumn();
+   justify-content: space-between;
+
+   @media screen and (min-width: $md3) {
+      display: none;
+   }
+
+   &::before,
+   &::after {
+      content: "";
+
+   }
+
+   &::before,
+   &::after,
+   & span {
+      height: 4px;
+      border-radius: 2px;
+      background-color: $navy;
+      transition: all 0.3s ease;
+   }
+
+   &.active {
+      span {
+         display: none;
+      }
+
+      &::before,
+      &::after {
+         position: absolute;
+         top: 50%;
+         left: 0;
+         width: 100%;
+         background-color: $orange;
+         transform: translateY(-50%);
+      }
+
+      &::before {
+         transform: rotate(-45deg);
+      }
+
+      &::after {
+         transform: rotate(45deg);
+      }
+   }
+
+   @media (any-hover: hover) {
+      &:hover {
+         cursor: pointer;
+      }
+   }
+}
+
+// MAIN ======================================================================================================
+.main {
+   flex: 1 1 auto;
+}
+
+.first-screen {
+   background-color: $lightCrema;
+
+   &__container {
+      position: relative;
+
+      &::before {
+         display: none;
+         content: "";
+         position: absolute;
+         top: 0;
+         right: 376 / 1240 * 100%;
+         min-width: 100vw;
+         height: 100%;
+         background-color: $darkCrema;
+
+         @media screen and (min-width: $md2) {
+            display: block;
+         }
+      }
+   }
+
+   &__body {
+      position: relative;
+      padding-top: 140px;
+
+      @media screen and (max-width: $md1) {
+         padding-top: 115px;
+      }
+
+      @media screen and (max-width: $md2) {
+         padding-top: 95px;
+      }
+
+      @media screen and (max-width: $md3) {
+         padding-top: 60px;
+      }
+
+      @media screen and (min-width: $md2) {
+         display: flex;
+         gap: 32px;
+      }
+   }
+
+   &__content {
+      position: relative;
+      z-index: 5;
+      flex: 0 0 494 / 1240 * 100%;
+      align-self: flex-start;
+      margin: 0 -15px;
+      @include adaptiv-value("padding", 60, 15, 1);
+      @include flexColumn();
+      background-color: rgba(255, 255, 255, 0.9);
+
+      @media screen and (min-width: $md2) {
+         @include adaptiv-value("margin-bottom", 80, 15, 1);
+         @include adaptiv-value("padding", 60, 1, 1);
+
+         @supports ((-webkit-backdrop-filter: blur(31px)) or (backdrop-filter: blur(31px))) {
+            background-color: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(15.5px);
+         }
+      }
+   }
+
+   &__header {
+      @include adaptiv-value("font-size", 56, 24, 1);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 16px/56px * 1em;
+   }
+
+   &__text {
+      @include adaptiv-value("font-size", 20, 16, 1);
+      margin-bottom: 48px/20px * 1em;
+      color: $darkGray;
+   }
+
+   &__btn {
+      @include adaptiv-value("min-height", 78, 48, 1);
+      @include adaptiv-value("font-size", 20, 16, 1);
+
+      @media screen and (min-width: $md4) {
+         align-self: center;
+      }
+
+      @media screen and (min-width: $md2) {
+         align-self: stretch;
+      }
+   }
+
+   &__slider {
+      flex: 1 1 auto;
+      align-self: flex-end;
+      min-width: 0;
+   }
+}
+
+.main-slider {
+   @include flexColumn();
+   align-items: flex-end;
+
+   @media screen and (max-width: $md2) {
+      align-items: stretch;
+      flex-direction: column-reverse;
+   }
+
+   &__controls {
+      align-self: stretch;
+      margin: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      @media screen and (min-width: $md2) {
+         margin-top: 0;
+      }
+   }
+
+   &__pagination {
+      flex: 1 1 auto;
+   }
+
+   &__buttons {}
+
+   &__body {
+      margin: 0;
+      overflow: visible;
+
+      @media screen and (min-width: $md2) {
+         @include adaptiv-value("width", 934, 290, 1);
+      }
+
+      @media screen and (max-width: $md2) {
+         margin: 0 -15px;
+      }
+   }
+
+   &__wrapper {}
+
+   &__slide {}
+}
+
+.slider-pagination {
+
+   &.swiper-pagination-bullets {
+      width: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+   }
+
+   .swiper-pagination-bullet {
+      cursor: pointer;
+      flex: 0 0 27px;
+      height: 27px;
+      margin: 2px 0;
+      position: relative;
+      @include flexCenter();
+      background-color: transparent;
+
+      &::before {
+         display: block;
+         content: "";
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         border: 1px solid $orange;
+         border-radius: 50%;
+         transform: scale(0);
+         transition: transform 0.3s ease;
+      }
+
+      &::after {
+         content: "";
+         width: 11px;
+         height: 11px;
+         border-radius: 50%;
+         background-color: $darkGray;
+         transition: background-color 0.3s ease;
+      }
+   }
+
+   .swiper-pagination-bullet-active {
+      &::before {
+         transform: scale(1);
+      }
+
+      &::after {
+         background-color: $orange;
+      }
+   }
+}
+
+.slider-buttons {
+   display: flex;
+   gap: 8px;
+
+   &__btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      @include flexCenter();
+      background-color: $orange;
+      color: white;
+      transition: all 0.3s ease;
+      pointer-events: auto;
+
+      @media screen and (any-hover: hover) {
+         &:hover {
+            background-color: rgba(232, 159, 113, 0.3);
+            color: $orange;
+         }
+      }
+
+      &_prev {
+         &::before {
+            transform: rotate(90deg) translateY(13%);
+         }
+      }
+
+      &_next {
+         &::before {
+            transform: rotate(-90deg) translateY(13%);
+         }
+      }
+
+      &_white {
+         background-color: $white;
+         box-shadow: 0px 4px 14px 1px rgba(0, 0, 0, 0.16);
+         color: $orange;
+
+         @media screen and (any-hover: hover) {
+            &:hover {
+               background-color: $orange;
+               color: white;
+            }
+         }
+      }
+   }
+}
+
+.main-slider-slide {
+   position: relative;
+
+   &__image {
+      padding-top: 553/934 * 100%;
+   }
+
+   &__content {
+      min-width: 295px;
+      @include adaptiv-value("padding", 24, 15, 1);
+      @include flexColumn();
+      background-color: rgba(255, 255, 255, 0.9);
+      color: inherit;
+
+      @media screen and (min-width: $md3) {
+         min-width: 350px;
+         position: absolute;
+         @include adaptiv-value("bottom", 40, 0, 1);
+         @include adaptiv-value("right", 40, 0, 1);
+      }
+
+      @supports ((-webkit-backdrop-filter: blur(31px)) or (backdrop-filter: blur(31px))) {
+         background-color: rgba(255, 255, 255, 0.72);
+         backdrop-filter: blur(15.5px);
+      }
+
+      @media screen and (any-hover: hover) {
+         &:hover {
+            .main-slider-slide__price {
+               color: $orange;
+            }
+         }
+      }
+   }
+
+   &__title {
+      @include adaptiv-value("font-size", 28, 22, 1);
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 4px / 28px * 1em;
+   }
+
+   &__text {
+      line-height: 1.5;
+      color: $extraDarkGray;
+      margin-bottom: 8px / 16px * 1em;
+   }
+
+   &__price {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      justify-content: space-between;
+      @include adaptiv-value("font-size", 20, 16, 1);
+      font-weight: 600;
+      line-height: 1.5;
+      transition: color 0.3s ease;
+
+      &::before {
+         margin-left: 10px;
+         font-size: 20px;
+      }
+   }
+}
+
+// Advantages ====================================================================================================
+.advantages {
+
+   &__container {}
+
+   &__list {
+      @include adaptiv-value("padding-top", 88, 30, 1);
+      @include adaptiv-value("padding-bottom", 88, 30, 1);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+
+      @media screen and (min-width: $md2) {
+         justify-content: space-between;
+      }
+   }
+
+   &__list-item {}
+}
+
+.advantage-card {
+   min-width: 280px;
+   display: flex;
+
+   &__icon {
+      flex: 0 0 86px;
+      height: 86px;
+      @include flexCenter();
+   }
+
+   &__description {
+      @include flexColumn();
+      justify-content: center;
+   }
+
+   &__title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 2px / 18px * 1em;
+   }
+
+   &__text {
+      color: #898989;
+   }
+}
+
+// Our Products ================================================================================================
+.products {
+   @include adaptiv-value("padding-bottom", 44, 30, 1);
+
+   &__container {}
+
+   &__body {
+      @include flexColumn();
+   }
+
+   &__header {
+      margin-bottom: 32px / 40px * 1em;
+   }
+
+   &__list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
+      gap: 32px;
+      margin-bottom: 32px;
+   }
+
+   &__list-item {}
+
+   &__btn {
+      font-size: 16px;
+
+      @media screen and (min-width: $md4) {
+         align-self: center;
+      }
+   }
+}
+
+.product-card {
+   position: relative;
+   @include flexColumn();
+   background-color: $lightBg;
+
+   @media screen and (any-hover: hover) {
+      &:hover {
+         .product-card__actions {
+            pointer-events: all;
+            opacity: 1;
+            visibility: visible;
+         }
+      }
+   }
+
+   &__labels {
+      position: absolute;
+      z-index: 2;
+      @include adaptiv-value("top", 24, 10, 1);
+      @include adaptiv-value("right", 24, 10, 1);
+      @include flexColumn();
+      gap: 10px;
+   }
+
+   &__label {
+      flex: 0 0 48px;
+      width: 48px;
+      border-radius: 50%;
+      @include flexCenter();
+      background-color: $green;
+      color: $white;
+
+      &_red {
+         background-color: $red;
+      }
+   }
+
+   &__image {
+      padding-top: 301px / 285px * 100%;
+   }
+
+   &__body {
+      flex: 1 1 auto;
+      padding: 16px 16px 30px 16px;
+      @include flexColumn();
+   }
+
+   &__title {
+      @include adaptiv-value("font-size", 24, 20, 1);
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 8px / 24px * 1em;
+   }
+
+   &__description {
+      color: $darkGray;
+      line-height: 1.5;
+      margin-bottom: 8px / 24px * 1em;
+   }
+
+   &__prices {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+
+      @media screen and (any-hover: hover) {
+         margin-bottom: 0;
+      }
+   }
+
+   &__price {
+      @include adaptiv-value("font-size", 20, 16, 1);
+      font-weight: 600;
+
+      &_old {
+         @include adaptiv-value("font-size", 16, 14, 1);
+         text-decoration: line-through;
+         font-weight: 500;
+         color: $gray;
+      }
+   }
+
+   &__actions {
+      @media screen and (any-hover: hover) {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         padding: 0 42px;
+         @include flexCenter();
+         background-color: rgba(58, 58, 58, 0.74);
+         z-index: 3;
+         pointer-events: none;
+         opacity: 0;
+         visibility: hidden;
+         transition: all 0.3s ease;
+      }
+   }
+}
+
+.product-card-actions {
+
+   &__body {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+   }
+
+   &__btn {
+      flex: 1 1 100%;
+      min-width: auto;
+      font-size: 16px;
+      line-height: 1.5;
+   }
+
+   &__link {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: inherit;
+      transition: color 0.3s ease;
+
+      @media screen and (any-hover: hover) {
+         color: $white;
+
+         &:hover {
+            color: $orange;
+         }
+      }
+   }
+}
+
+// Rooms ======================================================================================================
+.rooms {
+   background-color: $lightCrema;
+   @include adaptiv-value("padding-top", 44, 30, 1);
+   @include adaptiv-value("padding-bottom", 44, 30, 1);
+
+   &__container {
+      @media screen and (min-width: $md2) {
+         display: flex;
+      }
+   }
+
+   &__body {
+      position: relative;
+      z-index: 5;
+      @include flexColumn();
+
+      @media screen and (min-width: $md2) {
+         flex: 0 0 464 / 1240 * 100%;
+         align-self: center;
+
+         @include adaptiv-value("padding-right", 86, 1, 1);
+      }
+
+      @media screen and (max-width: $md2) {
+         margin-bottom: 30px;
+      }
+   }
+
+   &__title {
+      @include adaptiv-value("font-size", 40, 24, 1);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 8px / 40px * 1em;
+
+      @media screen and (max-width: $md2) {
+         text-align: center;
+      }
+   }
+
+   &__text {
+      text-align: center;
+      color: $extraDarkGray;
+      @include adaptiv-value("margin-bottom", 24, 16, 1);
+
+      @media screen and (min-width: $md2) {
+         text-align: justify;
+      }
+   }
+
+   &__btn {
+      align-self: center;
+      min-width: 176px;
+
+      @media screen and (min-width: $md2) {
+         align-self: flex-start;
+      }
+   }
+
+   &__slider {
+      flex: 1 1 auto;
+      align-self: flex-start;
+      min-width: 0;
+
+      @media (max-width: $md4) {
+         margin: 0 -15px;
+      }
+   }
+}
+
+.slider-rooms {
+   position: relative;
+
+   &__body {
+      overflow: visible;
+      position: relative;
+
+      &::before {
+         content: "";
+         position: absolute;
+         z-index: 2;
+         width: 100vw;
+         height: 100%;
+         top: 0;
+         left: 0;
+         background-color: $lightCrema;
+         transform: translateX(-100%);
+      }
+   }
+
+   &__slide {
+      width: 372px;
+      position: relative;
+      overflow: hidden;
+      height: 1px;
+      @include adaptiv-value("min-height", 585, 400, 1);
+
+      &.swiper-slide-active {
+         .slider-rooms__image {
+            height: 100%;
+         }
+      }
+
+      @media screen and (max-width: $md4) {
+         width: 100%;
+      }
+   }
+
+   &__image {
+      height: 100%;
+      transition: height 0.8s ease;
+
+      @media screen and (min-width: $md3) {
+         height: 83%;
+      }
+   }
+
+   &__content {
+      position: absolute;
+      color: inherit;
+      @include adaptiv-value("left", 24, 15, 1);
+      @include adaptiv-value("bottom", 24, 15, 1);
+      @include adaptiv-value("padding", 32, 15, 1);
+      background-color: rgba(255, 255, 255, 0.9);
+
+      @supports ((-webkit-backdrop-filter: blur(31px)) or (backdrop-filter: blur(31px))) {
+         background: rgba(255, 255, 255, 0.72);
+         backdrop-filter: blur(31px);
+      }
+
+      @media screen and (any-hover: hover) {
+         &:hover {
+            &::before {
+               background-color: $orangeHover;
+            }
+         }
+      }
+
+      &::before {
+         position: absolute;
+         bottom: 0;
+         right: 0;
+         transform: translate(100%, 0);
+         width: 48px;
+         height: 48px;
+         background-color: $orange;
+         color: #fff;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         transition: background-color 0.3s ease;
+      }
+   }
+
+   &__title {
+      font-weight: 600;
+      @include adaptiv-value("font-size", 28, 24, 1);
+   }
+
+   &__buttons {
+      width: calc(100% - 48px);
+      position: absolute;
+      z-index: 5;
+      top: 50%;
+      left: 24px;
+      justify-content: space-between;
+      transform: translate(0px, -50%);
+      pointer-events: none;
+
+      @media screen and (min-width: 1290px) {
+         width: calc(100% + 48px);
+         left: -24px;
+      }
+   }
+
+   &__pagination.swiper-pagination-bullets {
+      @media screen and (min-width: $md3) {
+         position: absolute;
+         bottom: 30px;
+         width: 100%;
+         left: 396px;
+      }
+
+      @media screen and (max-width: $md3) {
+         justify-content: center;
+         padding-top: 15px;
+      }
+   }
+}
+
+.label-slider {
+   display: grid;
+   grid-template-columns: auto 27px auto;
+   align-items: center;
+   gap: 8px;
+
+   &:not(:last-child) {
+      margin-right: 8px;
+   }
+
+   &__number {}
+
+   &__dash {
+      height: 1px;
+      background-color: $black;
+   }
+
+   &__text {}
+}
+
+// Tips ======================================================================================================
+.tips {
+
+   &__container {
+      @include adaptiv-value("padding-top", 44, 30, 1);
+      @include adaptiv-value("padding-bottom", 44, 30, 1);
+      @include flexColumn();
+   }
+
+   &__header {}
+
+   &__slider {}
+}
+
+.tips-slider {
+   position: relative;
+
+   &__body {
+      @include adaptiv-value("margin-left", -32, -15, 1);
+      @include adaptiv-value("margin-right", -32, -15, 1);
+      @include adaptiv-value("padding", 32, 15, 1);
+   }
+
+   &__wrapper {}
+
+   &__slide {
+      @include flexColumn();
+      color: inherit;
+
+      @media screen and (any-hover: hover) {
+         &:hover {
+            box-shadow: 0 0 32px rgba(97, 97, 97, 0.2);
+
+            .tips-slider__title {
+               color: $orange;
+            }
+         }
+      }
+   }
+
+   &__image {
+      padding-top: 251 / 391 * 100%;
+   }
+
+   &__content {
+      flex: 1 1 auto;
+      padding: 16px;
+      @include flexColumn();
+   }
+
+   &__title {
+      @include adaptiv-value("font-size", 24, 20, 1);
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 8px / 24px * 1em;
+      transition: color 0.3s ease;
+   }
+
+   &__date {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.5;
+      color: $darkGray;
+   }
+
+   &__buttons {
+      position: absolute;
+      z-index: 5;
+      top: 50%;
+      left: 0;
+      width: calc(100% - 48px);
+      transform: translate(24px, -50%);
+      justify-content: space-between;
+      pointer-events: none;
+
+      @media screen and (max-width: $md3) {
+         display: none;
+      }
+
+      @media screen and (min-width: 1310px) {
+         width: calc(100% + 48px);
+         transform: translate(-24px, -50%);
+      }
+   }
+
+   &__pagination {
+      @include adaptiv-value("padding-top", 8, 0, 1);
+      justify-content: center;
+   }
+}
+
+// footer ======================================================================================================
+.footer {
+
+   &__body {
+      border-top: 1px solid #D8D8D8;
+      @include adaptiv-value("padding-top", 50, 30, 1);
+      @include adaptiv-value("padding-bottom", 50, 30, 1);
+      display: flex;
+
+      @media screen and (max-width: $md3) {
+         flex-direction: column;
+      }
+
+      @media screen and (max-width: 1023.98px) {
+         flex-wrap: wrap;
+         gap: 30px;
+      }
+   }
+
+   &__main {
+      @include flexColumn();
+
+      @media screen and (min-width: $md3) {
+         flex: 0 0 249px;
+      }
+   }
+
+   &__title {
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 29 / 24 * 100%;
+      margin-bottom: 16px;
+   }
+
+   &__info {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.5;
+      color: $extraDarkGray;
+      margin-bottom: 16px;
+   }
+
+   &__link {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.5;
+      color: $extraDarkGray;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+
+      &:not(:last-child) {
+         margin-bottom: 16px;
+      }
+
+      @media screen and (any-hover: hover) {
+         &:hover {
+            color: $orange;
+         }
+      }
+   }
+
+   &__links {
+      flex: 1 1 auto;
+   }
+
+   &__links-mobile {
+      flex: 1 1 auto;
+   }
+
+   &__message {
+      flex: 0 0 292px;
+
+      @media screen and (max-width: 1023.98px) {
+         flex: 1 1 100%;
+      }
+   }
+}
+
+.footer-links {
+   display: flex;
+   justify-content: space-between;
+
+   @media screen and (max-width: $md4) {
+      display: none;
+   }
+
+   @media screen and (min-width: 1023.98px) {
+      justify-content: space-evenly;
+   }
+
+   &__column {
+      @include flexColumn();
+
+      &:not(:last-child) {
+         margin-bottom: 16px;
+      }
+   }
+
+   &__btn {
+      text-align: left;
+      color: inherit;
+      cursor: default;
+   }
+
+   &__list {
+      @include flexColumn();
+      gap: 16px;
+   }
+
+   &__list-item {}
+
+   &__link {
+      display: block;
+      font-weight: 500;
+   }
+}
+
+.footer-links-mobile {
+   display: flex;
+   flex-direction: column;
+
+   @media screen and (min-width: $md4) {
+      display: none;
+   }
+
+   .footer-links__column {
+
+      &.active {
+         .footer-links-mobile__btn {
+            color: $orange;
+            margin-bottom: 16px;
+
+            &::before {
+               color: $orange;
+               transform: rotate(-90deg);
+            }
+         }
+
+         .footer-links__list {
+            overflow: visible;
+         }
+      }
+   }
+
+   &__btn {
+      margin-bottom: 0;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+      color: inherit;
+      transition: all 0.3s ease;
+
+      @media screen and (any-hover: hover) {
+         &:hover {
+            color: $orange;
+
+            &::before {
+               color: $orange;
+               transform: rotate(-90deg);
+            }
+         }
+      }
+
+      &::before {
+         transition: all 0.3s ease;
+      }
+   }
+
+   .footer-links__list {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.3s ease;
+   }
+}
+
+.message-form {
+   @include flexColumn();
+
+   &__body {
+      display: flex;
+      gap: 4px;
+   }
+
+   &__input {
+      flex: 1 1 auto;
+      width: 100%;
+      padding: 10px 12px;
+      background-color: $lightBg;
+      font-size: inherit;
+      font-weight: 400;
+      color: $gray;
+   }
+
+   &__btn {
+      flex: 0 0 45px;
+      height: 45px;
+      @include flexCenter();
+      background-color: $orange;
+      color: $white;
+      transition: all 0.3s ease;
+
+      @media screen and (any-hover: hover) {
+         &:hover {
+            background-color: $orangeHover;
+         }
+      }
+   }
+}
